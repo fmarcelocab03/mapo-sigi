@@ -6,6 +6,7 @@
     <title>MAPO S.A.C. | Sistema Integral de Gestión Inmobiliaria - SIGI</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4" defer></script>
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -13,15 +14,11 @@
     <header class="header" id="mainHeader">
         <div class="header__container">
             <div class="header__logo">
-                <svg class="header__logo-icon" viewBox="0 0 40 40" fill="none">
-                    <rect width="40" height="40" rx="8" fill="#1a365d" />
-                    <path d="M8 32V16L20 6L32 16V32H24V22H16V32H8Z" fill="#d69e2e" />
-                </svg>
-                <div class="header__brand">
-                    <span class="header__brand-name">MAPO S.A.C.</span>
-                    <span class="header__brand-subtitle">Inmobiliaria</span>
-                </div>
-            </div>
+    <img src="https://kwgdaetnsefhoprakapa.supabase.co/storage/v1/object/public/avatars/Mapo%20logo.jpg" 
+         alt="MAPO S.A.C." 
+         class="header__logo-img">
+    
+</div>
             <nav class="header__nav" id="mainNav">
                 <a href="#welcome" class="header__nav-link active" data-section="welcome">Inicio</a>
                 <a href="#buildings" class="header__nav-link" data-section="buildings">Edificios</a>
@@ -38,6 +35,10 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     SIGI Dashboard
                 </button>
+                <button class="header__btn header__btn--cliente" id="btnClientePanel" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+                    Mi Cuenta
+                </button>
                 <button class="header__btn header__btn--logout" id="btnLogout" style="display:none;">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                     Salir
@@ -53,10 +54,14 @@
     <main id="mainContent">
         <!-- SECCIÓN BIENVENIDA -->
         <section class="hero" id="welcome">
-            <div class="hero__overlay"></div>
-            <div class="hero__content">
-                <span class="hero__badge">MAPO S.A.C.</span>
-                <h1 class="hero__title">Bienvenido al Sistema Integral de Gestión Inmobiliaria</h1>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+        <img src="https://kwgdaetnsefhoprakapa.supabase.co/storage/v1/object/public/avatars/mapo_logo.png" 
+             alt="MAPO S.A.C. Logo" 
+             class="hero__logo"
+             onerror="this.style.display='none'">
+        <span class="hero__badge">MAPO S.A.C.</span>
+        <h1 class="hero__title">Bienvenido al Sistema Integral de Gestión Inmobiliaria</h1>
                 <p class="hero__subtitle">
                     Administramos con excelencia los edificios <strong>"Edificio Marcelo"</strong> y
                     <strong>"Los Fresnos I"</strong>. Gestión inteligente de alquileres, reservas tipo Airbnb,
@@ -73,11 +78,7 @@
                     </button>
                 </div>
             </div>
-            <div class="hero__scroll-indicator">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
         </section>
-
         <!-- SECCIÓN EDIFICIOS -->
         <section class="buildings" id="buildings">
             <div class="buildings__header">
@@ -89,13 +90,13 @@
             </div>
             <div class="buildings__grid">
                 <!-- Edificio Marcelo -->
-                <article class="building-card" data-building="edificio-marcelo">
-                    <div class="building-card__image-wrapper">
-                        <div class="building-card__image building-card__image--marcelo">
-                            <!-- SVG ilustrativo -->
-                        </div>
-                        <span class="building-card__badge">6 Pisos</span>
-                    </div>
+<article class="building-card" data-building="edificio-marcelo">
+    <div class="building-card__image-wrapper">
+        <img src="https://kwgdaetnsefhoprakapa.supabase.co/storage/v1/object/public/edificios/edificio-marcelo1.jpg" 
+             alt="Edificio Marcelo" 
+             class="building-card__img">
+        <span class="building-card__badge">6 Pisos</span>
+    </div>
                     <div class="building-card__body">
                         <h3 class="building-card__name">Edificio Marcelo</h3>
                         <p class="building-card__location">Urb. La Merced, Huancayo</p>
@@ -114,13 +115,13 @@
                 </article>
 
                 <!-- Edificio Los Fresnos I -->
-                <article class="building-card" data-building="los-fresnos-i">
-                    <div class="building-card__image-wrapper">
-                        <div class="building-card__image building-card__image--fresnos">
-                            <!-- SVG ilustrativo -->
-                        </div>
-                        <span class="building-card__badge">10 Pisos</span>
-                    </div>
+<article class="building-card" data-building="los-fresnos-i">
+    <div class="building-card__image-wrapper">
+        <img src="https://kwgdaetnsefhoprakapa.supabase.co/storage/v1/object/public/edificios/edificio-fresnos.png" 
+             alt="Los Fresnos I" 
+             class="building-card__img">
+        <span class="building-card__badge">10 Pisos</span>
+    </div>
                     <div class="building-card__body">
                         <h3 class="building-card__name">Los Fresnos I</h3>
                         <p class="building-card__location">Urb. Alto La Merced, Huancayo</p>
@@ -220,7 +221,33 @@
             <div class="dashboard__content" id="dashboardContent"></div>
         </div>
     </div>
+ <!-- ==================== PANEL DEL CLIENTE ==================== -->
+    <div class="cliente-overlay" id="clienteOverlay" style="display:none;">
+        <div class="cliente-panel">
+            <aside class="cliente-panel__sidebar">
+                <div class="cliente-panel__header">
+                    <h3>Mi Cuenta</h3>
+                    <button class="cliente-panel__close" id="btnCloseCliente">&times;</button>
+                </div>
+                <nav class="cliente-panel__nav">
+                    <button class="cliente-panel__nav-item active" data-cliente-tab="perfil">Perfil</button>
+                    <button class="cliente-panel__nav-item" data-cliente-tab="reservas">Mis Reservas</button>
+                    <button class="cliente-panel__nav-item" data-cliente-tab="pagos">Mis Pagos</button>
+                </nav>
+            </aside>
+            <div class="cliente-panel__content" id="clienteContent"></div>
+        </div>
+    </div>
 
+    <!-- ==================== MODAL DE FORMULARIO (para administrador) ==================== -->
+    <div class="modal-overlay" id="formModalOverlay" style="display:none;">
+        <div class="modal" id="formModal">
+            <button class="modal__close" id="btnCloseFormModal">&times;</button>
+            <h3 id="formModalTitle">Formulario</h3>
+            <form id="formModalForm" class="modal__form"></form>
+            <p class="form__message" id="formModalMessage"></p>
+        </div>
+    </div>
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer" id="contact">
         <div class="footer__container">
