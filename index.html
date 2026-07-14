@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPO S.A.C. | Sistema Integral de Gestión Inmobiliaria - SIGI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header class="header" id="mainHeader">
+        <div class="header__container">
+            <div class="header__logo">
+                <svg class="header__logo-icon" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#1a365d" />
+                    <path d="M8 32V16L20 6L32 16V32H24V22H16V32H8Z" fill="#d69e2e" />
+                </svg>
+                <div class="header__brand">
+                    <span class="header__brand-name">MAPO S.A.C.</span>
+                    <span class="header__brand-subtitle">Inmobiliaria</span>
+                </div>
+            </div>
+            <nav class="header__nav" id="mainNav">
+                <a href="#welcome" class="header__nav-link active" data-section="welcome">Inicio</a>
+                <a href="#buildings" class="header__nav-link" data-section="buildings">Edificios</a>
+                <a href="#contact" class="header__nav-link" data-section="contact">Contacto</a>
+                <button class="header__btn header__btn--login" id="btnOpenLogin">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    Iniciar Sesión
+                </button>
+                <button class="header__btn header__btn--register" id="btnOpenRegister">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    Crear Cuenta
+                </button>
+                <button class="header__btn header__btn--dashboard" id="btnDashboard" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    SIGI Dashboard
+                </button>
+                <button class="header__btn header__btn--logout" id="btnLogout" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Salir
+                </button>
+            </nav>
+            <button class="header__mobile-toggle" id="mobileMenuToggle" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="mainContent">
+        <!-- SECCIÓN BIENVENIDA -->
+        <section class="hero" id="welcome">
+            <div class="hero__overlay"></div>
+            <div class="hero__content">
+                <span class="hero__badge">MAPO S.A.C.</span>
+                <h1 class="hero__title">Bienvenido al Sistema Integral de Gestión Inmobiliaria</h1>
+                <p class="hero__subtitle">
+                    Administramos con excelencia los edificios <strong>"Edificio Marcelo"</strong> y
+                    <strong>"Los Fresnos I"</strong>. Gestión inteligente de alquileres, reservas tipo Airbnb,
+                    ventas y contratos digitales. Todo centralizado en un solo lugar.
+                </p>
+                <div class="hero__actions">
+                    <a href="#buildings" class="hero__btn hero__btn--primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        Ver Edificios
+                    </a>
+                    <button class="hero__btn hero__btn--secondary" id="btnHeroLogin">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                        Acceder a SIGI
+                    </button>
+                </div>
+            </div>
+            <div class="hero__scroll-indicator">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+        </section>
+
+        <!-- SECCIÓN EDIFICIOS -->
+        <section class="buildings" id="buildings">
+            <div class="buildings__header">
+                <h2 class="buildings__title">Nuestros Edificios</h2>
+                <p class="buildings__subtitle">
+                    Dos complejos residenciales estratégicamente ubicados en Huancayo, dentro de las urbanizaciones
+                    La Merced y Alto La Merced. Diseñados para brindar confort, seguridad y calidad de vida.
+                </p>
+            </div>
+            <div class="buildings__grid">
+                <!-- Edificio Marcelo -->
+                <article class="building-card" data-building="edificio-marcelo">
+                    <div class="building-card__image-wrapper">
+                        <div class="building-card__image building-card__image--marcelo">
+                            <!-- SVG ilustrativo -->
+                        </div>
+                        <span class="building-card__badge">6 Pisos</span>
+                    </div>
+                    <div class="building-card__body">
+                        <h3 class="building-card__name">Edificio Marcelo</h3>
+                        <p class="building-card__location">Urb. La Merced, Huancayo</p>
+                        <ul class="building-card__features">
+                            <li><span class="feature-dot"></span> Departamentos en venta y alquiler</li>
+                            <li><span class="feature-dot"></span> Hospedaje temporal tipo Airbnb</li>
+                            <li><span class="feature-dot"></span> 6 pisos con acabados modernos</li>
+                            <li><span class="feature-dot"></span> Zona residencial consolidada</li>
+                        </ul>
+                        <div class="building-card__status">
+                            <span class="status-indicator status-indicator--available"></span>
+                            <span>Departamentos disponibles</span>
+                        </div>
+                        <button class="building-card__btn" data-building-btn="edificio-marcelo">Ver disponibilidad</button>
+                    </div>
+                </article>
+
+                <!-- Edificio Los Fresnos I -->
+                <article class="building-card" data-building="los-fresnos-i">
+                    <div class="building-card__image-wrapper">
+                        <div class="building-card__image building-card__image--fresnos">
+                            <!-- SVG ilustrativo -->
+                        </div>
+                        <span class="building-card__badge">10 Pisos</span>
+                    </div>
+                    <div class="building-card__body">
+                        <h3 class="building-card__name">Los Fresnos I</h3>
+                        <p class="building-card__location">Urb. Alto La Merced, Huancayo</p>
+                        <ul class="building-card__features">
+                            <li><span class="feature-dot"></span> Departamentos en venta y alquiler</li>
+                            <li><span class="feature-dot"></span> Hospedaje temporal tipo Airbnb</li>
+                            <li><span class="feature-dot"></span> 10 pisos con vista panorámica</li>
+                            <li><span class="feature-dot"></span> Zona de alto crecimiento urbano</li>
+                        </ul>
+                        <div class="building-card__status">
+                            <span class="status-indicator status-indicator--available"></span>
+                            <span>Departamentos disponibles</span>
+                        </div>
+                        <button class="building-card__btn" data-building-btn="los-fresnos-i">Ver disponibilidad</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DISPONIBILIDAD (dinámica) -->
+        <section class="availability" id="availabilitySection" style="display:none;">
+            <div class="availability__container">
+                <h3 class="availability__title" id="availabilityTitle">Disponibilidad de Departamentos</h3>
+                <button class="availability__close" id="btnCloseAvailability">&times;</button>
+                <div class="availability__grid" id="availabilityGrid"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== MODAL: LOGIN / REGISTRO ==================== -->
+    <div class="modal-overlay" id="modalOverlay" style="display:none;">
+        <div class="modal" id="authModal">
+            <button class="modal__close" id="btnCloseModal">&times;</button>
+            <div class="modal__tabs">
+                <button class="modal__tab active" data-tab="login">Iniciar Sesión</button>
+                <button class="modal__tab" data-tab="register">Crear Cuenta</button>
+            </div>
+            <form class="modal__form active" id="formLogin" data-form="login">
+                <div class="form__group">
+                    <label for="loginEmail">Correo electrónico</label>
+                    <input type="email" id="loginEmail" placeholder="correo@ejemplo.com" required autocomplete="email">
+                </div>
+                <div class="form__group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" placeholder="Ingresa tu contraseña" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="form__submit">Ingresar a SIGI</button>
+                <p class="form__message" id="loginMessage"></p>
+            </form>
+            <form class="modal__form" id="formRegister" data-form="register" style="display:none;">
+                <div class="form__group">
+                    <label for="registerName">Nombre completo</label>
+                    <input type="text" id="registerName" placeholder="Tu nombre completo" required autocomplete="name">
+                </div>
+                <div class="form__group">
+                    <label for="registerEmail">Correo electrónico</label>
+                    <input type="email" id="registerEmail" placeholder="correo@ejemplo.com" required autocomplete="email">
+                </div>
+                <div class="form__group">
+                    <label for="registerPhone">Teléfono (opcional)</label>
+                    <input type="tel" id="registerPhone" placeholder="+51 999 999 999" autocomplete="tel">
+                </div>
+                <div class="form__group">
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+                </div>
+                <div class="form__group">
+                    <label for="registerConfirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="Repite tu contraseña" required minlength="6" autocomplete="new-password">
+                </div>
+                <button type="submit" class="form__submit">Crear Cuenta</button>
+                <p class="form__message" id="registerMessage"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD SIGI ==================== -->
+    <div class="dashboard-overlay" id="dashboardOverlay" style="display:none;">
+        <div class="dashboard" id="dashboardSIGI">
+            <aside class="dashboard__sidebar">
+                <div class="dashboard__sidebar-header">
+                    <h3 class="dashboard__logo">SIGI</h3>
+                    <span class="dashboard__version">v1.0</span>
+                </div>
+                <nav class="dashboard__nav">
+                    <button class="dashboard__nav-item active" data-dashboard-tab="resumen">Resumen General</button>
+                    <button class="dashboard__nav-item" data-dashboard-tab="departamentos">Departamentos</button>
+                    <button class="dashboard__nav-item" data-dashboard-tab="reservas">Reservas</button>
+                    <button class="dashboard__nav-item" data-dashboard-tab="clientes">Clientes</button>
+                    <button class="dashboard__nav-item" data-dashboard-tab="reportes">Reportes Semanales</button>
+                </nav>
+                <div class="dashboard__sidebar-footer">
+                    <span class="dashboard__user-name" id="dashboardUserName">Admin</span>
+                    <button class="dashboard__close-btn" id="btnCloseDashboard">Cerrar Dashboard</button>
+                </div>
+            </aside>
+            <div class="dashboard__content" id="dashboardContent"></div>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="contact">
+        <div class="footer__container">
+            <div class="footer__grid">
+                <div class="footer__col footer__col--info">
+                    <h4 class="footer__heading">MAPO S.A.C.</h4>
+                    <p class="footer__description">Empresa inmobiliaria dedicada a la compra de terrenos, construcción de edificios multifamiliares, venta de departamentos, administración de alquileres y gestión de hospedajes temporales tipo Airbnb en Huancayo.</p>
+                    <div class="footer__contact-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+                        <span>Urb. La Merced & Alto La Merced, Huancayo</span>
+                    </div>
+                </div>
+                <div class="footer__col footer__col--advisor">
+                    <h4 class="footer__heading">Asesor Inmobiliario</h4>
+                    <div class="footer__advisor-card">
+                        <div class="footer__advisor-avatar">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d69e2e" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="footer__advisor-info">
+                            <strong>Marcelo Caballero Fernando</strong>
+                            <span>Asesor Comercial</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__col footer__col--whatsapp">
+                    <h4 class="footer__heading">Contáctanos</h4>
+                    <p class="footer__phone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        +51 910 408 009
+                    </p>
+                    <a href="https://wa.me/51910408009?text=Hola%2C%20estoy%20interesado%20en%20informaci%C3%B3n%20sobre%20los%20departamentos%20de%20MAPO%20S.A.C." class="footer__whatsapp-btn" target="_blank" rel="noopener noreferrer" id="btnWhatsApp">
+                        Enviar mensaje por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 MAPO S.A.C. - Todos los derechos reservados. | Desarrollado por el equipo SIGI</p>
+                <p class="footer__credits">Universidad Peruana Los Andes - Facultad de Ingeniería - Escuela Profesional de Ingeniería de Sistemas y Computación</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
